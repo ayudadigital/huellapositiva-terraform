@@ -12,11 +12,11 @@ module no_reply_email {
 }
 
 module reviser_email {
-  source = "../..//modules/ssm/parameter"
+  source = "../..//modules/ssm/parameter-from-encrypted"
   environment = var.environment
   region = var.region
   name = "${local.base_path}/${var.project["name"]}.web-admin.email"
-  value = var.reviser_email
+  encrypted_value = var.reviser_email
   state_bucket_name = var.state_bucket_name
 }
 
@@ -92,13 +92,4 @@ module mgmt_bucket {
   name = "${local.base_path}/aws.s3.buckets.mgmt"
   value = aws_s3_bucket.bucket_mgmt_data.bucket
   state_bucket_name = var.state_bucket_name
-}
-
-module testy_secret {
-  source = "../..//modules/ssm/parameter-from-encrypted"
-  environment = var.environment
-  region = var.region
-  name = "${local.base_path}/testy_enc"
-  state_bucket_name = var.state_bucket_name
-  encrypted_value = var.testy_enc
 }

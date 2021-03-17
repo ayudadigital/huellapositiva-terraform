@@ -10,6 +10,6 @@ inputs = {
   cpu = 512
   memory = 256
   docker_image = "ayudadigital/huelladigital-frontend:29"
-  ecs_task_initial_desired_count = 0
-  ingress_cidr = "0.0.0.0/0"
+  ecs_task_initial_desired_count = 1
+//  ingress_cidr = "0.0.0.0/0"
 }

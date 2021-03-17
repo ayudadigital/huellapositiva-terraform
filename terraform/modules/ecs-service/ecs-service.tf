@@ -3,7 +3,7 @@ resource aws_ecs_service ecs_service {
   cluster = data.terraform_remote_state.ecs.outputs.ecs_cluster_id
   task_definition = aws_ecs_task_definition.ecs_task_definition.arn
   desired_count = var.ecs_task_initial_desired_count
-  deployment_minimum_healthy_percent = "100"
+  deployment_minimum_healthy_percent = "0"
   force_new_deployment = true
 
   ordered_placement_strategy {

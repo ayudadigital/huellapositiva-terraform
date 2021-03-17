@@ -78,7 +78,7 @@ resource aws_alb_listener alb-https {
   port = "443"
   protocol = "HTTPS"
   ssl_policy = "ELBSecurityPolicy-TLS-1-2-2017-01"
-  certificate_arn = "arn:aws:acm:us-east-1:283609209591:certificate/58433069-4584-4b93-8bb1-c5274ec878f4" // TODO Replace
+  certificate_arn = "arn:aws:acm:us-east-1:258586964218:certificate/3944cc61-8e12-45c5-9267-5110364f0641"
 
   default_action {
     type = "fixed-response"

@@ -10,7 +10,7 @@
 
     terraform/accounts/huellapositiva-live/global/us-east-1/infra/users
 
-3- KMS (charged by usage of the keys)
+3- KMS (not free)
 
     terraform/accounts/huellapositiva-live/dev/global/infra/kms
 
@@ -85,6 +85,8 @@
 
 ## TODO
 
+### Configure RDS
+
 ### Configure backups for S3 and RDS
 
-### Configure RDS
+### Configure Route 53

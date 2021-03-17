@@ -12,8 +12,6 @@ variable reviser_email {}
 
 variable datasource_url {}
 
-variable testy_enc {}
-
 variable no_reply_email_address {}
 
 variable cpu {}
