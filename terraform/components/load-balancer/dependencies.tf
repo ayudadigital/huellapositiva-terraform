@@ -15,3 +15,12 @@ data terraform_remote_state ecs {
     region = var.region
   }
 }
+
+data terraform_remote_state domain {
+  backend = "s3"
+  config = {
+    bucket = var.state_bucket_name
+    key = "env-${var.environment}/infra/domain/${var.region}/terraform.tfstate"
+    region = var.region
+  }
+}
