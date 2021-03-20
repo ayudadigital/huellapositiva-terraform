@@ -13,6 +13,7 @@ data template_file task_definition {
     base_url = "https://${var.hostname}"
     aws_log_group = aws_cloudwatch_log_group.task_log_group.name
     aws_log_prefix = "awslogs-${var.environment}-${var.project["name"]}-${var.service_name}"
+    service_env_variables = var.service_env_variables
   }
 }
 

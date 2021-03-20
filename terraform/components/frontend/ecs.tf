@@ -24,4 +24,14 @@ module ecs_service {
   service_name = "frontend"
   state_bucket_name = var.state_bucket_name
   ingress_cidr = var.ingress_cidr
+  service_env_variables = <<EOT
+  ,{
+    "name" : "REACT_APP_BASE_URI",
+    "value" : "https://${var.hostname}"
+  },
+  {
+    "name" : "REACT_APP_BASE_API",
+    "value" : "https://${var.hostname}"
+  }
+  EOT
 }
