@@ -90,3 +90,9 @@
 ### Configure backups for S3 and RDS
 
 ### Configure Route 53
+
+# Tools
+
+### Terraform 0.14.6
+
+### Terragrunt 0.27.3

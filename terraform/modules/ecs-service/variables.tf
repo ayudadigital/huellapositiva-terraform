@@ -44,3 +44,7 @@ variable service_policies {
 variable ingress_cidr {
   default = ""
 }
+
+variable service_env_variables {
+  default = ""
+}

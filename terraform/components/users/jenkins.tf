@@ -22,7 +22,7 @@ resource aws_iam_user_policy_attachment ecs_deploy {
 }
 
 output jenkins_access_key_id {
-  value = aws_iam_access_key.developer.id
+  value = aws_iam_access_key.jenkins.id
 }
 
 output jenkins_access_key_secret {

@@ -18,5 +18,5 @@ inputs = {
   // ================================================
   datasource_url = "jdbc:h2:mem:testdb"
   reviser_email = "AQICAHgH0cctO3uXC5n3FlzZ17pYxzUUERtkeR++L4/O5zWn3QEPcrPM+MhpajkK7S7GDfRLAAAAdDByBgkqhkiG9w0BBwagZTBjAgEAMF4GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMPDZzlo2w4a+BMjPLAgEQgDHmnfPwII+mqCu8+DC2LpeICjN8iSbomRfkrulzCPmpQ6G0JIQG58HaVTPCthv4vxqg"
-  no_reply_email_address = "huellapositiva@outlook.com"
+  no_reply_email_address = "no-reply@ayudadigital.org"
 }

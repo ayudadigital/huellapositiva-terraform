@@ -41,6 +41,7 @@
         "name" : "BASE_URI",
         "value" : "${base_url}"
       }
+      ${service_env_variables}
     ]
   }
 ]
