@@ -12,14 +12,6 @@
         "hostPort": ${application_port}
       }
     ],
-    "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-            "awslogs-group": "${aws_log_group}",
-            "awslogs-region": "${aws_region}",
-            "awslogs-stream-prefix": "${aws_log_prefix}"
-        }
-    },
     "environment":[
       {
         "name" : "HOST_IP_COMMAND",
