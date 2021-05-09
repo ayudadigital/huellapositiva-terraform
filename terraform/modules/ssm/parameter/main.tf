@@ -3,4 +3,5 @@ resource aws_ssm_parameter ssm_parameter {
   type = "SecureString"
   value = var.value
   key_id = data.terraform_remote_state.kms.outputs.env_kms_key_arn
+  overwrite = true
 }

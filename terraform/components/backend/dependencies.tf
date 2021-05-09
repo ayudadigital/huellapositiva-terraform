@@ -15,3 +15,12 @@ data terraform_remote_state kms {
     region = var.region
   }
 }
+
+data terraform_remote_state rds {
+  backend = "s3"
+  config = {
+    bucket = var.state_bucket_name
+    key = "env-${var.environment}/infra/rds/${var.region}/terraform.tfstate"
+    region = var.region
+  }
+}

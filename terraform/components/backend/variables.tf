@@ -12,6 +12,10 @@ variable reviser_email {}
 
 variable datasource_url {}
 
+variable datasource_driver {}
+
+variable datasource_dialect {}
+
 variable no_reply_email_address {}
 
 variable cpu {}

@@ -38,21 +38,39 @@ module datasource_url {
   state_bucket_name = var.state_bucket_name
 }
 
-module datasource_username {
-  source = "../..//modules/ssm/random-parameter"
+module datasource_driver {
+  source = "../..//modules/ssm/parameter"
   environment = var.environment
   region = var.region
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  name = "${local.base_path}/spring.datasource.driverClassName"
+  value = var.datasource_driver
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_dialect {
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
+  name = "${local.base_path}/spring.jpa.database-platform"
+  value = var.datasource_dialect
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_username {
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
   name = "${local.base_path}/spring.datasource.username"
+  value = data.terraform_remote_state.rds.outputs.db_user
   state_bucket_name = var.state_bucket_name
 }
 
 module datasource_password {
-  source = "../..//modules/ssm/random-parameter"
+  source = "../..//modules/ssm/parameter"
   environment = var.environment
   region = var.region
-  override_special = "!#$%&*()-_=+[]{}<>:?"
   name = "${local.base_path}/spring.datasource.password"
+  value = data.terraform_remote_state.rds.outputs.db_pass
   state_bucket_name = var.state_bucket_name
 }
 
