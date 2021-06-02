@@ -10,7 +10,9 @@ variable project {
 
 variable reviser_email {}
 
-variable datasource_url {}
+variable datasource_url {
+  default = ""
+}
 
 variable datasource_driver {}
 
@@ -30,4 +32,8 @@ variable ecs_task_initial_desired_count {}
 
 variable ingress_cidr {
   default = ""
+}
+
+variable cloudwatch_logs_enabled {
+  default = false
 }

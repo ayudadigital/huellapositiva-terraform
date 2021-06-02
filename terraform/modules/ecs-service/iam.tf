@@ -10,7 +10,7 @@ data aws_iam_policy_document ecs_service_task {
 }
 
 resource aws_iam_role ecs_service_task {
-  name               = "${var.project["name"]}-ecs-service-${var.service_name}"
+  name               = "${var.project["name"]}-${var.environment}-ecs-service-${var.service_name}"
   assume_role_policy = data.aws_iam_policy_document.ecs_service_task.json
 }
 
@@ -26,7 +26,7 @@ resource aws_iam_role_policy_attachment ecs_service_task_other {
 }
 
 resource aws_iam_role ecs_service_task_execution {
-  name               = "${var.project["name"]}-ecs-service-${var.service_name}-execution"
+  name               = "${var.project["name"]}-${var.environment}-ecs-service-${var.service_name}-execution"
   assume_role_policy = data.aws_iam_policy_document.ecs_service_task.json
 }
 

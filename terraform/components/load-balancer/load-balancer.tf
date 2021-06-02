@@ -47,7 +47,7 @@ resource aws_security_group elb_security_group {
 }
 
 resource aws_alb alb {
-  name = "${data.terraform_remote_state.ecs.outputs.ecs_cluster_name}-alb"
+  name = "${var.environment}-ecs-cluster-alb"
   subnets = local.public_subnet_ids
   security_groups = [
     aws_security_group.elb_security_group.id

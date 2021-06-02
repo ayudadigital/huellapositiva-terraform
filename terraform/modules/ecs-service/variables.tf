@@ -48,3 +48,7 @@ variable ingress_cidr {
 variable service_env_variables {
   default = ""
 }
+
+variable cloudwatch_logs_enabled {
+  default = false
+}

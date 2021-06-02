@@ -11,10 +11,19 @@ data template_file task_definition {
     aws_region = var.region
     name = "${var.environment}-${var.service_name}-container"
     base_url = "https://${var.hostname}"
-    aws_log_group = aws_cloudwatch_log_group.task_log_group.name
-    aws_log_prefix = "awslogs-${var.environment}-${var.project["name"]}-${var.service_name}"
+    aws_log_driver = var.cloudwatch_logs_enabled ? "awslogs" : "journald"
+    aws_log_options = var.cloudwatch_logs_enabled ? local.aws_log_options_cloudwatch : local.aws_log_options_journald
     service_env_variables = var.service_env_variables
   }
+}
+
+locals {
+  aws_log_options_journald = jsonencode({})
+  aws_log_options_cloudwatch = jsonencode({
+    "awslogs-group": var.cloudwatch_logs_enabled ? aws_cloudwatch_log_group.task_log_group[0].name : null,
+    "awslogs-region": var.region,
+    "awslogs-stream-prefix": "awslogs-${var.environment}-${var.project["name"]}-${var.service_name}"
+  })
 }
 
 resource aws_ecs_task_definition ecs_task_definition {
@@ -32,6 +41,7 @@ resource aws_ecs_task_definition ecs_task_definition {
 }
 
 resource aws_cloudwatch_log_group task_log_group {
+  count = var.cloudwatch_logs_enabled ? 1 : 0
   name = "${var.environment}-${var.project["name"]}-${var.service_name}-lg"
 
   tags = {

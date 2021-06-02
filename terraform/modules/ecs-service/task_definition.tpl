@@ -12,6 +12,10 @@
         "hostPort": ${application_port}
       }
     ],
+    "logConfiguration": {
+        "logDriver": "${aws_log_driver}",
+        "options": ${aws_log_options}
+    },
     "environment":[
       {
         "name" : "HOST_IP_COMMAND",
