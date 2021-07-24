@@ -12,7 +12,7 @@ inputs = {
   ecs_max_instances = 2
   ecs_desired_instances = 1
   scheduled_scaling = {
-    enabled = 1
+    enabled = 0
     scale_down_cron_utc = "0 20 * * *"
     scale_up_cron_utc = "0 8 * * *"
   }
