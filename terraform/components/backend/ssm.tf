@@ -3,11 +3,11 @@ locals {
 }
 
 module no_reply_email {
-  source = "../..//modules/ssm/parameter"
+  source = "../..//modules/ssm/parameter-from-encrypted"
   environment = var.environment
   region = var.region
   name = "${local.base_path}/${var.project["name"]}.feature.email.from"
-  value = var.no_reply_email_address
+  encrypted_value = var.no_reply_email_address
   state_bucket_name = var.state_bucket_name
 }
 
@@ -34,11 +34,30 @@ module datasource_url {
   environment = var.environment
   region = var.region
   name = "${local.base_path}/spring.datasource.url"
-  value = var.datasource_url
+  value = var.datasource_url != "" ? var.datasource_url : "jdbc:postgresql://${data.terraform_remote_state.rds.outputs.endpoint}/${data.terraform_remote_state.rds.outputs.db_name}"
   state_bucket_name = var.state_bucket_name
 }
 
-module datasource_username {
+module datasource_driver {
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
+  name = "${local.base_path}/spring.datasource.driverClassName"
+  value = var.datasource_driver
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_dialect {
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
+  name = "${local.base_path}/spring.jpa.database-platform"
+  value = var.datasource_dialect
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_username_random {
+  count = var.datasource_url != "" ? 1 : 0
   source = "../..//modules/ssm/random-parameter"
   environment = var.environment
   region = var.region
@@ -47,12 +66,33 @@ module datasource_username {
   state_bucket_name = var.state_bucket_name
 }
 
-module datasource_password {
+module datasource_password_random {
+  count = var.datasource_url != "" ? 1 : 0
   source = "../..//modules/ssm/random-parameter"
   environment = var.environment
   region = var.region
   override_special = "!#$%&*()-_=+[]{}<>:?"
   name = "${local.base_path}/spring.datasource.password"
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_username_rds {
+  count = var.datasource_url != "" ? 0 : 1
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
+  name = "${local.base_path}/spring.datasource.username"
+  value = data.terraform_remote_state.rds.outputs.db_user
+  state_bucket_name = var.state_bucket_name
+}
+
+module datasource_password_rds {
+  count = var.datasource_url != "" ? 0 : 1
+  source = "../..//modules/ssm/parameter"
+  environment = var.environment
+  region = var.region
+  name = "${local.base_path}/spring.datasource.password"
+  value = data.terraform_remote_state.rds.outputs.db_pass
   state_bucket_name = var.state_bucket_name
 }
 

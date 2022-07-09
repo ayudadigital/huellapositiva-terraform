@@ -34,4 +34,5 @@ module ecs_service {
           aws_iam_policy.ses_service_policy.arn,
           "arn:aws:iam::aws:policy/AmazonSSMFullAccess" // TODO Limit
   )
+  cloudwatch_logs_enabled = var.cloudwatch_logs_enabled
 }

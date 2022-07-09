@@ -26,7 +26,11 @@
 
     terraform/accounts/huellapositiva-live/dev/us-east-1/infra/load-balancer
 
-7- Backend (free)
+7- RDS (not free)
+
+    terraform/accounts/huellapositiva-live/dev/us-east-1/infra/rds
+
+8- Backend (free)
 
     terraform/accounts/huellapositiva-live/dev/us-east-1/infra/backend
     
@@ -84,8 +88,6 @@
 ### DNS conf?
 
 ## TODO
-
-### Configure RDS
 
 ### Configure backups for S3 and RDS
 

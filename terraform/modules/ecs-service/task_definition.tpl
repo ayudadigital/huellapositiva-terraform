@@ -13,12 +13,8 @@
       }
     ],
     "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-            "awslogs-group": "${aws_log_group}",
-            "awslogs-region": "${aws_region}",
-            "awslogs-stream-prefix": "${aws_log_prefix}"
-        }
+        "logDriver": "${aws_log_driver}",
+        "options": ${aws_log_options}
     },
     "environment":[
       {

@@ -26,3 +26,5 @@ variable spot_instance_max_price {
   description = "Maximum price ($/h) we allow to pay in order to allocate Spot instances"
   default = "0.0094" // Regular t3a.micro on demand EC2 instance price
 }
+
+variable ssh_key {}

@@ -10,7 +10,7 @@ data aws_iam_policy_document ecs_agent {
 }
 
 resource aws_iam_role ecs_agent {
-  name               = "${var.project["name"]}-ecs-instance"
+  name               = "${var.project["name"]}-${var.environment}-ecs-instance"
   assume_role_policy = data.aws_iam_policy_document.ecs_agent.json
 }
 
@@ -21,7 +21,7 @@ resource aws_iam_role_policy_attachment ecs_agent {
 }
 
 resource aws_iam_instance_profile ecs_agent {
-  name = "${var.project["name"]}-ecs-instance-profile"
+  name = "${aws_iam_role.ecs_agent.name}-profile"
   role = aws_iam_role.ecs_agent.name
 }
 
@@ -37,7 +37,7 @@ data aws_iam_policy_document ecs_service {
 }
 
 resource aws_iam_role ecs_service {
-  name               = "${var.project["name"]}-ecs-service"
+  name               = "${var.project["name"]}-${var.environment}-ecs-service"
   assume_role_policy = data.aws_iam_policy_document.ecs_service.json
 }
 
